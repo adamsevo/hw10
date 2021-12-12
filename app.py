@@ -17,15 +17,15 @@ _dbname = client.get_secret('HW10-DBNAME')
 _secret = client.get_secret('HW10-SECRET-KEY')
 
 conn = pymysql.connect(
-        host = _dbhostname.value, #os.environ.get('DBHOSTNAME'),
-        user = _dbusername.value, #os.environ.get('DBUSERNAME'),
-        password = _dbpassword.value, #os.environ.get('DBPASSWORD'),
-        db = _dbname.value, #os.environ.get('DBNAME'), 
+        host = _dbhostname.value, 
+        user = _dbusername.value, 
+        password = _dbpassword.value, 
+        db = _dbname.value, 
         ssl={'ca': './BaltimoreCyberTrustRoot.crt.pem'},
         cursorclass = pymysql.cursors.DictCursor)  
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = _secret.value
+app.config['HW10-SECRET-KEY'] = _secret.value
 
 @app.route('/', methods=['GET'])
 def index():
